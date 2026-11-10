@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f6f8">
+  <title>BAGORITHM | Smart Packing Planner</title>
+  <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-art">
+      <a class="brand brand-light" href="/">
+        <span class="brand-mark">B</span><span>BAGORITHM</span>
+      </a>
+      <div class="auth-art-copy">
+        <span class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</span>
+        <h1>Pack light.<br>Go far.</h1>
+        <p>Thoughtful packing, happy travels. Keep your plans, checklist and budget in one calm place.</p>
+        <div class="travel-stamp"><span>✦</span><div><strong>Good trips begin</strong><small>before you leave home</small></div></div>
+      </div>
+      <div class="auth-orbit orbit-one"></div><div class="auth-orbit orbit-two"></div>
+      <div class="auth-art-foot">MADE FOR THE WAY YOU WANDER</div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-form-wrap">
+        <span class="eyebrow" id="auth-eyebrow">WELCOME ABOARD</span>
+        <h2 id="auth-title">Sign in to your trips</h2>
+        <p class="muted" id="auth-subtitle">A little planning goes a long way.</p>
+        <form id="auth-form">
+          <label id="name-field" class="form-field hidden">Your name
+            <input id="auth-name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Alex Morgan">
+          </label>
+          <label class="form-field">Email address
+            <input id="auth-email" name="email" type="email" maxlength="160" autocomplete="email" placeholder="you@example.com" required>
+          </label>
+          <label class="form-field">Password
+            <input id="auth-password" name="password" type="password" minlength="6" maxlength="200" autocomplete="current-password" placeholder="At least 6 characters" required>
+          </label>
+          <button id="auth-submit" class="button button-primary button-wide" type="submit">Sign in <span>→</span></button>
+        </form>
+        <div id="auth-message" class="message hidden" role="status"></div>
+        <p class="auth-switch"><span id="auth-switch-copy">New around here?</span> <button id="auth-switch" class="text-button" type="button">Create an account</button></p>
+        <p class="local-note"><span class="status-dot"></span>Your trips are saved on this computer.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand" href="#" data-page-link="dashboard"><span class="brand-mark">B</span><span>BAGORITHM</span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page-link="dashboard"><span class="nav-icon">⌂</span>Overview</button>
+        <button class="nav-link" data-page-link="trips"><span class="nav-icon">◷</span>My trips</button>
+        <button class="nav-link" data-page-link="previous"><span class="nav-icon">↶</span>Previous trips</button>
+        <div class="nav-divider"></div>
+        <div class="workspace-label section-label">PACKING TOOLS</div>
+        <button class="nav-link" data-page-link="recommendations"><span class="nav-icon">✳</span>Smart picks</button>
+        <button class="nav-link" data-page-link="outfits"><span class="nav-icon">✧</span>Day-wise outfits</button>
+        <button class="nav-link" data-page-link="checklist"><span class="nav-icon">☷</span>Packing checklist</button>
+        <button class="nav-link" data-page-link="shopping"><span class="nav-icon">▢</span>Shopping list</button>
+        <div class="nav-divider"></div>
+        <button class="nav-link" data-page-link="budget"><span class="nav-icon">＄</span>Budget &amp; weight</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button id="sign-out" class="sign-out"><span class="avatar" id="user-avatar">A</span><span class="user-summary"><strong id="user-name">Traveler</strong><small id="user-email"></small></span><span class="sign-out-icon">↗</span></button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="breadcrumb-current">Overview</strong></div>
+        <div class="topbar-actions">
+          <label class="trip-picker"><span>PLANNING FOR</span>
+            <select id="trip-select" aria-label="Choose a trip"></select>
+          </label>
+          <button class="button button-primary button-small" data-action="new-trip"><span>＋</span> New trip</button>
+        </div>
+      </header>
+
+      <div id="toast" class="toast hidden" role="status"></div>
+      <div class="page-content">
+        <section class="page-view active" data-page="dashboard">
+          <div class="page-heading heading-with-action"><div><span class="eyebrow">A CLEAR PLAN, A LIGHTER BAG</span><h1 id="welcome-heading">Your travel overview</h1><p class="muted">Everything for your next adventure, all in one place.</p></div><button class="button button-dark" data-action="new-trip">＋ Plan a trip</button></div>
+          <div id="dashboard-content"></div>
+        </section>
+        <section class="page-view" data-page="trips">
+          <div class="page-heading heading-with-action"><div><span class="eyebrow">YOUR ADVENTURES</span><h1>My trips</h1><p class="muted">Make a plan, then let the fun begin.</p></div><button class="button button-dark" data-action="new-trip">＋ Add a trip</button></div>
+          <div id="trips-content"></div>
+        </section>
+        <section class="page-view" data-page="previous">
+          <div class="page-heading"><span class="eyebrow">GOOD TIMES, WELL PACKED</span><h1>Previous trips</h1><p class="muted">Revisit your past plans or reuse a packing list.</p></div>
+          <div id="previous-content"></div>
+        </section>
+        <section class="page-view" data-page="recommendations">
+          <div class="page-heading"><span class="eyebrow">A HEAD START ON PACKING</span><h1>Smart Picks</h1><p class="muted">Choose where you're going, the weather and your plans to get useful packing suggestions.</p></div>
+          <div id="recommendations-content"></div>
+        </section>
+        <section class="page-view" data-page="outfits">
+          <div class="page-heading"><span class="eyebrow">A FRESH LOOK FOR EVERY DAY</span><h1>Day-wise Outfit Planner</h1><p class="muted">Build a practical outfit for every day and reuse versatile pieces to keep your bag lighter.</p></div>
+          <div id="outfits-content"></div>
+        </section>
+        <section class="page-view" data-page="checklist">
+          <div class="page-heading heading-with-action"><div><span class="eyebrow">ONE THING AT A TIME</span><h1>Packing checklist</h1><p class="muted">Check off each item and watch your progress grow.</p></div><button class="button button-primary" data-action="new-item" data-category="PACKING">＋ Add item</button></div>
+          <div id="checklist-content"></div>
+        </section>
+        <section class="page-view" data-page="shopping">
+          <div class="page-heading heading-with-action"><div><span class="eyebrow">A LITTLE PREP GOES A LONG WAY</span><h1>Shopping list</h1><p class="muted">Track what to buy and keep an eye on the total.</p></div><button class="button button-primary" data-action="new-item" data-category="SHOPPING">＋ Add to list</button></div>
+          <div id="shopping-content"></div>
+        </section>
+        <section class="page-view" data-page="budget">
+          <div class="page-heading heading-with-action"><div><span class="eyebrow">LIGHT BAGS, CLEAR BUDGETS</span><h1>Budget &amp; weight</h1><p class="muted">See what you're planning to spend and carry.</p></div><button class="button button-dark" data-action="edit-trip">✎ Edit trip budget</button></div>
+          <div id="budget-content"></div>
+        </section>
+      </div>
+      <footer class="page-footer"><span>BAGORITHM</span><span>Pack with a plan. Travel with a smile.</span></footer>
+    </main>
+  </div>
+
+  <dialog id="trip-dialog" class="form-dialog">
+    <form id="trip-form" method="dialog">
+      <div class="dialog-heading"><div><span class="eyebrow">YOUR NEXT ADVENTURE</span><h2 id="trip-dialog-title">Plan a trip</h2></div><button class="icon-button" type="button" data-action="close-trip-dialog" aria-label="Close">×</button></div>
+      <label class="form-field">Trip name<input id="trip-name" name="name" maxlength="100" placeholder="e.g. Summer break" required></label>
+      <label class="form-field">Destination<input id="trip-destination" name="destination" maxlength="100" placeholder="e.g. Kyoto, Japan" required></label>
+      <div class="form-row"><label class="form-field">Departure date<input id="trip-date" name="startDate" type="date" required></label><label class="form-field">Number of days<input id="trip-days" name="days" type="number" min="1" max="365" value="5" required></label></div>
+      <label class="form-field">Trip budget<input id="trip-budget" name="budget" type="number" min="0" max="1000000000" step="0.01" value="0" required><small>Use your local currency. Set 0 if you haven't decided yet.</small></label>
+      <label class="form-field">Luggage weight limit (grams)<input id="trip-weight-limit" name="weightLimit" type="number" min="1" max="100000" step="1" placeholder="Enter your airline or personal limit" required></label>
+      <div id="trip-form-error" class="form-error hidden"></div>
+      <div class="dialog-actions"><button class="button button-quiet" type="button" data-action="close-trip-dialog">Cancel</button><button id="trip-save" class="button button-primary" type="submit">Save trip</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="item-dialog" class="form-dialog">
+    <form id="item-form" method="dialog">
+      <div class="dialog-heading"><div><span class="eyebrow">MAKE IT YOUR OWN</span><h2 id="item-dialog-title">Add an item</h2></div><button class="icon-button" type="button" data-action="close-item-dialog" aria-label="Close">×</button></div>
+      <label class="form-field">Item name<input id="item-name" name="name" maxlength="100" placeholder="e.g. Light rain jacket" required></label>
+      <div class="form-row"><label class="form-field">Category<select id="item-category" name="category"><option value="PACKING">Packing item</option><option value="CLOTHING">Clothing</option><option value="SHOPPING">Shopping list</option></select></label><label class="form-field">Quantity<input id="item-quantity" name="quantity" type="number" min="1" max="999" value="1" required></label></div>
+      <div class="form-row"><label class="form-field">Weight per item (grams)<input id="item-weight" name="weight" type="number" min="0" max="100000" step="any" required></label><label class="form-field">Price per item (₹)<input id="item-price" name="price" type="number" min="0" max="1000000000" step="0.01" required></label></div>
+      <div id="item-form-error" class="form-error hidden"></div>
+      <div class="dialog-actions"><button class="button button-quiet" type="button" data-action="close-item-dialog">Cancel</button><button class="button button-primary" type="submit">Save item</button></div>
+    </form>
+  </dialog>
+
+  <script src="/JS/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+# Local accounts, trips, packing items, and other generated user data
+/data/
+
+# Compiled output and build artifacts
+/out/
+/build/
+/target/
+/bin/
+*.class
+
+# Local environment settings and credentials
+.env
+.env.*
+!.env.example
+credentials.*
+secrets.*
+*_credentials.*
+*_secret.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.token
+*.session
+
+# Temporary files and logs
+*.tmp
+*.log
+*.bak
+*.swp
+*.swo
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
